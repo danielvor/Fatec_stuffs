@@ -1,2 +1,5 @@
-Utils:
-- `gcc arquivo.c -o nome_função -lm` // gera o executável com o nome da função
+Utils
+
+```bash
+gcc arquivo.c -o nome_função -lm
+``` 
