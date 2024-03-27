@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Usuários</title>
+</head>
+<body>
+    <h1>Gerenciamento de Usuários</h1>
+    <div id="usuarios-lista"></div>
+    <button onclick="carregarUsuarios()">Recarregar</button>
+    <button onclick="editarUsuario()">Novo Usuário</button>
+    
+    <!-- Script para carregar os usuários -->
+
+
+    <script>
+        // Função para carregar os usuários
+         async function carregarUsuarios() {
+            try {
+                const response = await fetch('./backend/Router/UsuarioRouter.php', {
+                    method: 'GET'
+                });
+
+                const data = await response.json();
+                const usuarios = data.usuarios;
+
+                const lista = document.getElementById('usuarios-lista');
+                lista.innerHTML = '';
+
+                usuarios.forEach(usuario => {
+                    const item = document.createElement('div');
+                    item.innerHTML = `
+                        <p>${usuario.nome}</p>
+                        <p>${usuario.email}</p>
+                        <button onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button onclick="excluirUsuario(${usuario.id})">Excluir</button>
+                    `;
+                    lista.appendChild(item);
+                });
+
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }  
+
+        // Função para editar usuário
+        function editarUsuario(usuarioId) {
+            // Implemente aqui o código para editar usuário
+            console.log('Editar usuário:', usuarioId);
+        }
+
+        // Função para excluir usuário
+        function excluirUsuario(usuarioId) {
+            fetch(`UsuarioRouter.php?id=${usuarioId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                // Recarrega a lista após a exclusão
+                carregarUsuarios();
+            })
+            .catch(error => console.error('Erro:', error));
+        }
+
+        // Carrega os usuários ao carregar a página
+        window.onload = carregarUsuarios;
+    </script>
+</body>
+</html>

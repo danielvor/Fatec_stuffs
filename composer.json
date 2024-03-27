@@ -1,0 +1,15 @@
+{
+    "name": "backend/backend",
+    "autoload": {
+        "psr-4": {
+            "App\\": "backend/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Rodrigues",
+            "email": "this.daniel@outlook.com"
+        }
+    ],
+    "require": {}
+}
