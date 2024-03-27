@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciamento de Usuários</title>
+  </head>
+  <body>
+    <h1>Gerenciamento de Usuários</h1>
+    <div id="usuarios-lista"></div>
+    <button onclick="carregarUsuarios()">Recarregar</button>
+    <button onclick="editarUsuario()">Novo Usuário</button>
+
+    <!-- Script para carregar os usuários -->
+  </body>
+</html>
+<script>
+  const myHeaders = new Headers();
+  myHeaders.append(
+    "Cookie",
+    "codespaces_correlation_id=d995f009ea65d291ac79d8dbedb5abdc"
+  );
+
+  const raw = "";
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://automatic-waffle-wx4r4pjqq6rh99vv-1996.preview.app.github.dev/backend/Router/UsuarioRouter.php",
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+</script>
