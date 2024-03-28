@@ -10,7 +10,7 @@ return [
             'charset' => 'utf8'
         ],
         'sqlite' => [
-            'path' => '/workspaces/fatec_web/crud-rest-php/backend/Database/agenda.db',
+            'path' => '/workspaces/fatec_web/crud-rest-php/backend/Database/produtos.db',
         ],
         'sqlsrv' => [
             'host' => 'localhost',

@@ -5,7 +5,7 @@ use App\Model\Produto;
 use App\Repository\ProdutoRepository;
 
 class ProdutoController {
-    private $repository;
+    private $repository; 
 
     public function __construct(ProdutoRepository $repository) {
         $this->repository = $repository;
@@ -25,7 +25,7 @@ class ProdutoController {
             return;
         }
         $produto = new Produto();
-        $produto->setNome($data->nome)->setId($data->codigo_id)->setSenha($data->senha);
+        $produto->setNome($data->nome)->setId($data->codigo_id)->setPreco($data->preco);
 
         if ($this->repository->insertProduto($produto)) {
             http_response_code(201);
@@ -39,12 +39,12 @@ class ProdutoController {
     public function read($id = null) {
         if ($id) {
             $result = $this->repository->getProdutoById($id);
-            unset($result['senha']);
+            unset($result['preco']);
             $status = $result ? 200 : 404;
         } else {
             $result = $this->repository->getAllProdutos();
             foreach ($result as &$produto) {
-                unset($produto['senha']);
+                unset($produto['preco']);
             }
             unset($produto);
             $status = !empty($result) ? 200 : 404;
@@ -55,14 +55,14 @@ class ProdutoController {
     }
 
     public function update($data) {
-        if (!isset($data->produto_id, $data->nome, $data->codigo_id, $data->senha)) {
+        if (!isset($data->produto_id, $data->nome, $data->codigo_id, $data->preco)) {
             http_response_code(400);
             echo json_encode(["error" => "Dados incompletos para atualização do usuário."]);
             return;
         }
 
         $produto = new Produto();
-        $produto->setProdutoId($data->produto_id)->setNome($data->nome)->setId($data->codigo_id)->setSenha($data->senha);
+        $produto->setProdutoId($data->produto_id)->setNome($data->nome)->setId($data->codigo_id)->setPreco($data->preco);
 
         if ($this->repository->updateProduto($produto)) {
             http_response_code(200);
@@ -85,19 +85,19 @@ class ProdutoController {
 }
 
     // public function login($data) {
-    //     if (!isset($data->email, $data->senha)) {
+    //     if (!isset($data->email, $data->preco)) {
     //         http_response_code(400);
-    //         echo json_encode(["error" => "Email e senha são necessários para o login."]);
+    //         echo json_encode(["error" => "Email e preco são necessários para o login."]);
     //         return;
     //     }
     
     //     $produto = $this->repository->getProdutoByEmail($data->email);
-    //     if ($produto && password_verify($data->senha, $produto['senha'])) {
-    //         unset($produto['senha']);
+    //     if ($produto && password_verify($data->preco, $produto['preco'])) {
+    //         unset($produto['preco']);
     //         http_response_code(200);
     //         echo json_encode(["message" => "Login bem-sucedido.", "produto" => $produto]);
     //     } else {
     //         http_response_code(401); 
-    //         echo json_encode(["error" => "Email ou senha inválidos."]);
+    //         echo json_encode(["error" => "Email ou preco inválidos."]);
     //     }
     // }
