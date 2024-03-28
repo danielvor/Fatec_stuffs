@@ -79,7 +79,7 @@ Método: POST
 Dados Requeridos:
 ```bash
 {
-  "nome": "Novo Usuario",
+  "nome": "Novo Produto",
   "email": "novo@example.com",
   "senha": "novaSenha123"
 }
@@ -104,8 +104,8 @@ Método: PUT
 Dados Requeridos:
 ```bash
 {
-  "usuario_id": 1,
-  "nome": "Usuario Atualizado",
+  "Produto_id": 1,
+  "nome": "Produto Atualizado",
   "email": "atualizado@example.com",
   "senha": "senhaAtualizada123"
 }

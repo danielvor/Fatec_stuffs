@@ -1,14 +1,14 @@
 <?php
 require "../../vendor/autoload.php";
 
-use App\Controller\UsuarioController;
+use App\Controller\ProdutoController;
 use App\Http\HttpHeader;
-use App\Repository\UsuarioRepository;
+use App\Repository\ProdutoRepository;
 
 HttpHeader::setDefaultHeaders();
 
-$repository = new UsuarioRepository(); 
-$controller = new UsuarioController($repository);
+$repository = new ProdutoRepository(); 
+$controller = new ProdutoController($repository);
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
     $action = $_GET['action']; 
 }
 $data = json_decode(file_get_contents("php://input"));
-var_dump("Chegou no UsuarioRouter");
+var_dump("Chegou no ProdutoRouter");
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
