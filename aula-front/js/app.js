@@ -1,3 +1,10 @@
+// const nome = document.querySelector('#nome');
+// const idade = document.querySelector('#idade');
+// const pessoa = {
+//     nome: nome.value,
+//     idade: idade.value
+// };
+
 async function buscarCep(cep){
     alert(cep);
     let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {method: 'GET'});
